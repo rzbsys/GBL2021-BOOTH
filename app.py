@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, session, request, url_for
 from pymongo import MongoClient
 from datetime import timedelta
 from utils.gdrive import Gdrive
-import os, json, time
+import os, time
 
 
 #시간 불러오기

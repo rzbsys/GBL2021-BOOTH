@@ -1,0 +1,12 @@
+gunicorn
+flask
+oauth2client
+oauthlib
+requests
+pymongo
+google-api-python-client 
+oauth2client
+google
+google-auth-httplib2 
+google-auth-oauthlib
+pandas
