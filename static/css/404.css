@@ -1,0 +1,39 @@
+body {
+    background-color: #fb3a18;
+    max-width: 500px;
+
+}
+.fixed {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    color: white;
+    margin-top: 10px;
+}
+
+p {
+    max-width: 800px;
+    color: white;
+    width: 80%;
+    font-size: 1.3em;   
+    margin-top: 20px;
+}
+
+img {
+    filter: invert(1);
+    width: 20%;
+}
+
+button {
+    margin-top: 20px;
+    border: 0px;
+    width: 100px;
+    background-color: white;
+    height: 30px;
+    border-radius: 10px;
+}

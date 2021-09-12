@@ -1,0 +1,233 @@
+
+.logo {
+  text-align: left;
+  font-size: 20px;
+  color: rgb(240, 240, 240);
+  z-index: -2;
+}
+
+.warn {
+  width: 90vw;
+  position: fixed;
+  left: 5%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.6);
+  z-index: 1000;
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  color: white;
+}
+
+
+.navi-bar {
+  background-color: rgb(59, 89, 255);
+  border-radius: 40px;
+  position: fixed;
+  width: 100vw;
+  height: 170px;
+  bottom: -100px;
+  left: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+html * {
+  word-break: keep-all;
+    font-family: Interop, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    -webkit-overflow-scrolling: touch;
+
+}
+
+.fixed {
+  position: fixed;
+  width: calc(100% - 10%);
+  height: calc(100% - 40px);
+}
+
+.fig {
+  position: absolute;
+  z-index: -1;
+}
+
+.cir {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  background-color: #FFD400;
+  top: 160px;
+  left: -40px;
+}
+
+.gbl {
+  font-size: 50px;
+}
+.load {
+  flex-direction: column;
+  background-color: white;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+
+.tng {
+  right: -70px;
+  top: 20px;
+
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-bottom: 150px solid #00fa9a;
+ 
+}
+
+
+
+.rec {
+  width: 130px;
+  height: 130px;
+  background-color: #3b59ff;
+  bottom: 200px;
+  right: -30px;
+}
+
+
+
+
+
+html *::-webkit-scrollbar{ display:none; }
+
+body {
+   text-align: center;
+    overflow: hidden;
+    padding: 20px 5%;
+}
+
+
+.b1 {font-weight: 100;}
+.b2 {font-weight: 300;}
+.b3 {font-weight: 400;}
+.b4 {font-weight: 500;}
+.b5 {font-weight: 600;}
+.b6 {font-weight: 700;}
+.b7 {font-weight: 800;}
+
+.shadow {
+    box-shadow: 0px 0px 20px -10px black;
+}
+
+
+@font-face {
+  font-family: 'Interop';
+  src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Bold.woff2')
+      format('woff2'),
+    url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Bold.woff')
+      format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+  
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-ExtraBold.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-ExtraBold.woff')
+        format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff')
+        format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-SemiBold.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-SemiBold.woff')
+        format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+   
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Medium.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Medium.woff')
+        format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Light.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Light.woff')
+        format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+  
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-ExtraLight.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-ExtraLight.woff')
+        format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+ 
+  
+  
+  
+
+  
+  @font-face {
+    font-family: 'Interop';
+    src: url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Thin.woff2')
+        format('woff2'),
+      url('https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Thin.woff')
+        format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+
+
+
+
+  .blur {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+  }

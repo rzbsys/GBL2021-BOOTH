@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <meta name="theme-color" content="#fb3a18">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBL2021</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/404.css')}}">
+</head>
+<body>
+    <div class="fixed">
+        <img src="{{url_for('static', filename='img/warning.svg')}}" alt="">
+<br>
+        <h1>{{err_msg}}<br></h1>
+        <h6>{{err_code}}</h6>
+        <h6>{{request.user_agent.string}}</h6>
+        <h6>{{request.remote_addr}}</h6>
+
+
+        <p>정상적인 경로로 접속되지 않았습니다. 비정상적인 경로로 지속적으로 접근할 경우, 추후 불이익이 발생할 수 있습니다. 만약 정상적인 경로로 접근하였으나, 이 메세지가 발생할 경우 운영진에게 도움을 요청하세요.</p>
+        <form action="/">
+            <button>메인화면</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>GBL2021</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+</head>
+
+<body>
+    <div class="warn">
+        <h3 class="warn-text">비밀번호가 일치하지 않습니다.</h3>
+    </div>
+
+    
+    <div class="load b5">
+        <h1 class="gbl">
+            <span style="color: rgb(74, 101, 255);">G</span><span style="color: #FFD400;">B</span><span style="color: #00fa9a;">L</span>    
+        </h1>
+        <h4 class="b3">로딩중</h4>
+    </div>
+
+
+    <div class="fixed">
+        <div class="logo b7">
+            GBL2021
+        </div>
+
+        <div class="fig-box">
+            <div class="cir fig"></div>
+
+            <div class="tng fig"></div>
+    
+            <div class="rec fig"></div>
+        </div>
+        
+        <div class="login">
+            <h1 class="b7 login-text">GBL 2021<br>어드민 페이지</h1><br>
+            <h5 class="b2 sub-login-text">자동로그인이 활성화되어있다면, <br><a href="https://support.google.com/chrome/answer/95647?hl=ko">브라우저 캐시를 초기화</a>해주세요.</h5>
+            
+            <form action="/login" method="POST">
+                <input type="password" id="PW" name="PW" placeholder="비밀번호를 입력하세요.">
+                <button type="submit" class="b7" id="Lgbtn">로그인</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+</body>
+<script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename='js/animate.js')}}"></script>
+<script src="{{url_for('static', filename='js/load.js')}}"></script>
+<script src="{{url_for('static', filename='js/login.js')}}"></script>
+
+</html>

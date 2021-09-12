@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>GBL2021</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/loadeffect.css')}}">
+</head>
+
+<body>
+    <div class="confirm">
+        <img src="{{url_for('static', filename='img/check.svg')}}" alt="">
+        <h4 class="b3">{{session['BID']}}번 부스</h4>
+        <h1 class="add_score_text">전민국에게 100점을 추가합니다.</h1>
+        <div style="height: 200px;"></div>
+        <div class="btn-box">
+            <button id="Cancel">취소</button>
+            <button id="Accept">확인</button>
+        </div>
+    </div>
+
+    <div class="gray">
+        <button class="close b4">닫기</button>
+
+    </div>
+    <div class="iframe">
+        <iframe id="Iframe" frameborder="0"></iframe>
+    </div>
+    <div class="warn">
+        <h3 class="warn-text">비밀번호가 일치하지 않습니다.</h3>
+    </div>
+
+    <div class="change">
+        <div>
+            <div id="animationWindow">
+            </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.8.0/bodymovin.min.js'></script>
+        <h2 class="b5">부스정보 변경중...</h2>
+
+    </div>
+    <div class="load b5">
+        <h1 class="gbl">
+            <span style="color: rgb(74, 101, 255);">G</span><span style="color: #FFD400;">B</span><span
+                style="color: #00fa9a;">L</span>
+        </h1>
+        <h4 class="b3">로딩중</h4>
+    </div>
+    <div class="fig-box">
+        <div class="cir fig"></div>
+
+        <div class="tng fig"></div>
+
+        <div class="rec fig"></div>
+    </div>
+
+
+    <div class="fixed">
+
+        <div class="logo b7">
+            GBL2021
+        </div>
+        <h1 style="text-align: left;">Booth Admin Page</h1><br>
+        <label>부스 정보</label>
+        <div class="bth-box" data-bid="{{i['NUM']}}">
+            {% if i['STATUS'] == 0 %}
+            <div class="status" style="background-color: #00df86;">원할</div>
+            {% endif %}
+            {% if i['STATUS'] == 1 %}
+            <div class="status" style="background-color: #FFD400;">준비</div>
+            {% endif %}
+            {% if i['STATUS'] == 2 %}
+            <div class="status">혼잡</div>
+            {% endif %}
+            <div class="status ls" style="margin-top: 0px; background-color: rgb(240, 240, 240); color: black;">
+                {{i['SUBJECT']}}</div>
+
+            <div class="status ls"
+                style="margin-top: 0px; margin-left: 45px; background-color: rgb(240, 240, 240); color: black;">
+                {{i['CLSF']}}</div>
+
+            <img src="{{thumnail_gdrive.Get_Direct_File_URL(str(i['NUM']) + '.png')}}">
+            <div class="bth-text-box">
+                <h2>{{i['NAME']}}</h2><br><br>
+                <p>{{i['SUB']}}</p>
+            </div>
+        </div>
+        <div class="grid">
+            <button onclick="sel(0)" id="N1" class="btn">원활</button>
+            <button onclick="sel(1)" id="N2" class="btn">준비</button>
+            <button onclick="sel(2)" id="N3" class="btn">혼잡</button>
+        </div>
+        <hr>
+        <div>
+            <label>점수 입력</label>
+            <div class="last-score">
+                <h5 class="b3">{{last['time']}}</h5>
+                <h1>{{user_name}}</h1>
+                <h2>+{{last['score']}}점</h2>
+            </div>
+            <div class="grid" style="grid-template-columns: repeat(4, 1fr); margin-top: 20px;">
+                <button onclick="score(0);" id="S4" class="btns">미참여</button>
+                <button onclick="score(80);" id="S3" class="btns">80점</button>
+                <button onclick="score(90);" id="S2" class="btns">90점</button>
+                <button onclick="score(100);" id="S1" class="btns">100점</button>
+            </div>
+            <button class="scan b7">
+                <img class="qr" src="{{url_for('static', filename='img/barcode-scanner.svg')}}">
+                QR코드 스캔하기</button>
+        </div>
+    </div>
+
+</body>
+<script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+<script src="{{url_for('static', filename='js/animate.js')}}"></script>
+<script src="{{url_for('static', filename='js/load.js')}}"></script>
+<script src="{{url_for('static', filename='js/login.js')}}"></script>
+<script src="{{url_for('static', filename='js/loadeffect.js')}}"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script>
+    var bid = "{{session['BID']}}";
+    bid = parseInt(bid);
+    var now = "{{i['STATUS']}}";
+    now = parseInt(now);
+    change(now);
+</script>
+
+</html>

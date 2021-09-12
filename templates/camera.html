@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBL2021 Camera</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
+</head>
+<style>
+    body {
+        padding: 0px;
+        margin: 0px;
+    }
+    #frame {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #canvas {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        z-index: 10000;
+    }
+
+    .warn {
+        width: 90vw;
+        position: fixed;
+        left: 5%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(92, 92, 92, 0.6);
+        z-index: 1000;
+        bottom: 130px;
+        border-radius: 10px;
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        color: white;
+        font-weight: 900;
+    }
+</style>
+
+<body>
+    <div class='box shadow blur' style="height: 200px;">
+
+        <div id="frame">
+            <div id="loadingMessage">
+                🎥 비디오 스트림에 액세스 할 수 없습니다<br />웹캠이 활성화되어 있는지 확인하십시오
+            </div>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <div class="warn">
+        QR코드가 인식되지 않을 경우 화면 밝기를 높혀주세요.
+    </div>
+
+</body>
+<script src="{{url_for('static', filename='js/QR_detect.js')}}"></script>
+<script src="{{url_for('static', filename='js/camera.js')}}"></script>
+
+</html>
