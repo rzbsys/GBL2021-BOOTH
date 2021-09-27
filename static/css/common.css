@@ -39,11 +39,11 @@
 
 html * {
   word-break: keep-all;
-    font-family: Interop, sans-serif;
-    padding: 0px;
-    margin: 0px;
-    -webkit-overflow-scrolling: touch;
-
+  font-family: Interop, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
 }
 
 .fixed {

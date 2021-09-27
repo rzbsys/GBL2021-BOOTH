@@ -1,8 +1,11 @@
-from flask import Flask, render_template, redirect, session, request, url_for
+from flask import Flask, render_template, redirect, session, request, url_for, Response
 from pymongo import MongoClient
 from datetime import timedelta
 from utils.gdrive import Gdrive
-import os, time
+import os, time, json
+from flask_pywebpush import webpush, WebPushException
+from flask_cors import CORS
+
 
 
 #시간 불러오기
@@ -13,11 +16,76 @@ def get_time():
     return string
 
 app = Flask(__name__)
+CORS(app)
+
 app.config['SECRET_KEY'] = os.urandom(13).hex()
 m_uri = "mongodb://gbl2021:Bc0cqRc8F8B2yQHzHQhYaDgkoWMEtf6VR5g4qm5dyljtjthj82EWrbvYRU0pKO1o5MqMIjrPAKuBP5tBxlK9Kw==@gbl2021.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@gbl2021@"
 client = MongoClient(m_uri, connect=False)
 db = client['gbl2021']
 thumnail_gdrive = Gdrive('1Fe5hwdPelmaV7aCi5TDvBGGQfCXtLv3Y')
+
+DER_BASE64_ENCODED_PRIVATE_KEY_FILE_PATH = os.path.join(os.getcwd(),"static/noti/private_key.txt")
+DER_BASE64_ENCODED_PUBLIC_KEY_FILE_PATH = os.path.join(os.getcwd(),"static/noti/public_key.txt")
+VAPID_PRIVATE_KEY = open(DER_BASE64_ENCODED_PRIVATE_KEY_FILE_PATH, "r+").readline().strip("\n")
+VAPID_PUBLIC_KEY = open(DER_BASE64_ENCODED_PUBLIC_KEY_FILE_PATH, "r+").read().strip("\n")
+global Noti_List_1, Noti_List_2
+
+
+VAPID_CLAIMS = {
+    "sub": "mailto:20-10520@dshs.kr"
+}
+
+
+#Web Push
+def send_web_push(subscription_information, message_body):
+    return webpush(
+        subscription_info=subscription_information,
+        data=message_body,
+        vapid_private_key=VAPID_PRIVATE_KEY,
+        vapid_claims=VAPID_CLAIMS
+    )
+
+
+
+#Web Push
+Noti_List_1 = []
+Noti_List_2 = []
+Noti_List_3 = []
+@app.route("/subscription/", methods=["GET", "POST"])
+def subscription():
+    if request.method == "GET":
+        return Response(response=json.dumps({"public_key": VAPID_PUBLIC_KEY}),
+            headers={"Access-Control-Allow-Origin": "*"}, content_type="application/json")
+    subscription_token = request.get_json("subscription_token")
+    try:
+        dic = json.loads(subscription_token['subscription_token'])
+    except:
+        return Response(status=502, mimetype="application/json")
+    if dic['keys']['p256dh'] in Noti_List_1:
+        pass
+    else:
+        Noti_List_1.append(dic['keys']['p256dh'])
+        Noti_List_2.append(dic['keys']['auth'])
+        Noti_List_3.append(dic['endpoint'])
+    return Response(status=201, mimetype="application/json")
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    Noti_List_1 = []
+    Noti_List_2 = []
+    Noti_List_3 = []
+    return Response(status=201, mimetype="application/json")
+
+#Web Push Test
+@app.route("/push_v1/",methods=['POST'])
+def push_v1():
+    message = request.form['MSG']
+    for p256dh, auth, endpoint in zip(Noti_List_1, Noti_List_2, Noti_List_3):
+        token = '{"endpoint":"' + endpoint + '", "expirationTime":null, "keys" : {"p256dh":"' + p256dh + '","auth":"' + auth + '"} }'
+        token = json.loads(token)
+        send_web_push(token, message)
+    return 'suc'
+
 
 #세션 기간 설정
 @app.before_request
@@ -82,7 +150,7 @@ def f2():
     if (len(login_db) == 0):
         return redirect('/?msg=비밀번호가 일치하지 않습니다.')
     
-    session['BID'] = login_db[0]['BOOTH']
+    session['BID'] = int(login_db[0]['BOOTH'])
     session['BNAME'] = list(db['booths'].find({'NUM':session['BID']}))[0]['NAME']
     return redirect('/')
     
