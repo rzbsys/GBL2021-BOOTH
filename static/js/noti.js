@@ -79,43 +79,41 @@ function initializeUI() {
         });
 }
 
-$(document).ready(function () {
-    $.ajax({
-        type: "GET",
-        url: '/subscription/',
-        success: function (response) {
-            console.log("response", response);
-            localStorage.setItem('applicationServerPublicKey', response.public_key);
-            if ('serviceWorker' in navigator && 'PushManager' in window) {
-                console.log('Service Worker and Push is supported');
-                navigator.serviceWorker.register(notiswurl)
-                    .then(function (swReg) {
-                        console.log('Service Worker is registered', swReg);
-                        swRegistration = swReg;
-                        initializeUI();
-                    })
-                    .catch(function (error) {
-                        console.error('Service Worker Error', error);
-                    });
-            } else {
-                console.warn('Push meapplicationServerPublicKeyssaging is not supported');
-            }
-
-
-            $.ajax({
-                type: "POST",
-                url: "/subscription/",
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
-                data: JSON.stringify({
-                    'subscription_token': localStorage.getItem('sub_token'),
-                }),
-                success: function (data) {
-                    console.log("success", data);
-                }
-            });
+$.ajax({
+    type: "GET",
+    url: '/subscription/',
+    success: function (response) {
+        console.log("response", response);
+        localStorage.setItem('applicationServerPublicKey', response.public_key);
+        if ('serviceWorker' in navigator && 'PushManager' in window) {
+            console.log('Service Worker and Push is supported');
+            navigator.serviceWorker.register(notiswurl)
+                .then(function (swReg) {
+                    console.log('Service Worker is registered', swReg);
+                    swRegistration = swReg;
+                    initializeUI();
+                })
+                .catch(function (error) {
+                    console.error('Service Worker Error', error);
+                });
+        } else {
+            console.warn('Push meapplicationServerPublicKeyssaging is not supported');
         }
-    });
+
+
+        $.ajax({
+            type: "POST",
+            url: "/subscription/",
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify({
+                'subscription_token': localStorage.getItem('sub_token'),
+            }),
+            success: function (data) {
+                console.log("success", data);
+            }
+        });
+    }
 });
 
 
